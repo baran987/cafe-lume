@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Café Lume | Sindelfingen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #faf9f7;
+      font-family: 'Inter', sans-serif;
+      color: #2c2b2b;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      padding: 1.8rem 0;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      line-height: 1;
+    }
+
+    .logo span {
+      font-weight: 500;
+      font-style: italic;
+      color: #e7d7c0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: 0.3s;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 4px;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #d4b68a;
+      color: #f0e5d8;
+    }
+
+    .btn-reserve {
+      background: transparent;
+      border: 1.5px solid #d4b68a;
+      color: #fff;
+      padding: 0.7rem 1.8rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.3s;
+      backdrop-filter: blur(4px);
+      background-color: rgba(0,0,0,0.15);
+    }
+
+    .btn-reserve:hover {
+      background-color: #d4b68a;
+      color: #1a1817;
+      border-color: #d4b68a;
+    }
+
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      background: linear-gradient(0deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 60%), url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=2070&auto=format&fit=crop') center center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 750px;
+      margin-top: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .hero .subtitle {
+      font-size: 1.35rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      color: #ede3d6;
+    }
+
+    .hero .location-badge {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      display: inline-block;
+      padding: 0.6rem 2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      font-weight: 400;
+      border: 1px solid rgba(255,255,255,0.3);
+      margin-top: 0.8rem;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 1.8rem;
+      opacity: 0.8;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-4px); }
+    }
+
+    section {
+      padding: 6rem 0;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #2c2b2b;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+      color: #6b6b6b;
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    .gold-accent {
+      color: #b49464;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 20px 20px 0px rgba(212, 182, 138, 0.2);
+    }
+
+    .about-text h2 {
+      font-size: 2.4rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    .about-text p {
+      color: #4a4a4a;
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-top: 2rem;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.9rem;
+      font-weight: 500;
+    }
+
+    .feature-list i {
+      color: #b49464;
+      font-size: 1.2rem;
+    }
+
+    .menu-bg {
+      background-color: #f3efea;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .menu-card {
+      background: #fff;
+      padding: 2.2rem 1.8rem;
+      text-align: center;
+      border-radius: 2px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      transition: transform 0.3s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .menu-card i {
+      font-size: 2.4rem;
+      color: #b49464;
+      margin-bottom: 1.2rem;
+    }
+
+    .menu-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .price {
+      font-weight: 600;
+      color: #b49464;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .full-menu-link {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .text-link {
+      color: #2c2b2b;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 2px solid #d4b68a;
+      padding-bottom: 4px;
+      letter-spacing: 1px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .text-link:hover {
+      color: #b49464;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 2px;
+      transition: 0.4s ease;
+      filter: brightness(0.95);
+    }
+
+    .gallery img:hover {
+      filter: brightness(1.05);
+      transform: scale(1.02);
+    }
+
+    .event-highlight {
+      background: #2c2b2b;
+      color: #f5f0e8;
+      padding: 3.5rem;
+      border-radius: 2px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    .event-text h3 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .event-text .date {
+      font-weight: 500;
+      color: #d4b68a;
+      letter-spacing: 2px;
+    }
+
+    .btn-outline-light {
+      border: 1.5px solid #d4b68a;
+      background: transparent;
+      color: #fff;
+      padding: 0.9rem 2.4rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-outline-light:hover {
+      background: #d4b68a;
+      color: #1a1817;
+    }
+
+    footer {
+      background: #1f1e1e;
+      color: #c0b9b0;
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #e7d7c0;
+      margin-bottom: 1rem;
+    }
+
+    .footer-info p {
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .footer-info i {
+      color: #b49464;
+      width: 20px;
+    }
+
+    .footer-links h4 {
+      color: #ffffff;
+      margin-bottom: 1.3rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .footer-links a {
+      display: block;
+      color: #c0b9b0;
+      text-decoration: none;
+      margin-bottom: 0.7rem;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .footer-links a:hover {
+      color: #d4b68a;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .social-icons a {
+      color: #c0b9b0;
+    }
+
+    .copyright {
+      border-top: 1px solid #3a3836;
+      margin-top: 3rem;
+      padding-top: 1.8rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #8b8b8b;
+    }
+
+    @media (max-width: 900px) {
+      .about-grid, .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero h1 {
+        font-size: 3rem;
+      }
+      .nav-links {
+        gap: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-bar">
+      <div class="logo">Café <span>Lume</span></div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#karte">Karte</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#events">Events</a>
+        <a href="#ueber-uns">Über uns</a>
+        <a href="#kontakt">Kontakt</a>
+        <button class="btn-reserve" onclick="alert('Reservierung: Rufen Sie uns an unter +49 7031 1234567 oder schreiben Sie an ciao@cafelume.de')">Reservieren</button>
+      </div>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Neu eröffnet<br>in Sindelfingen</h1>
+      <p class="subtitle">Café Lume · Licht & Genuss</p>
+      <div class="location-badge">
+        <i class="fas fa-map-pin" style="margin-right: 6px;"></i> Marktplatz 8, 71063 Sindelfingen
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <section id="ueber-uns">
+    <div class="container about-grid">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" alt="Café Lume Innenraum">
+      </div>
+      <div class="about-text">
+        <h2>Eine Bühne für <span class="gold-accent">Kaffeekultur</span></h2>
+        <p>Vor wenigen Wochen haben wir die Türen geöffnet – mitten im Herzen von Sindelfingen. Café Lume verbindet italienische Leichtigkeit mit modernem Design. Unser Name steht für Licht, und genau das bringen wir in jede Tasse.</p>
+        <p>Handverlesene Bohnen von lokalen Röstern, saisonale Patisserie und ein Interieur, das zum Verweilen einlädt. Ob Macchiato am Morgen oder ein Glas Wein am Abend – bei uns findet jeder seinen Platz.</p>
+        <ul class="feature-list">
+          <li><i class="fas fa-check-circle"></i> Täglich frische Croissants & Dolci</li>
+          <li><i class="fas fa-check-circle"></i> Spezialitätenkaffee (Latte Art)</li>
+          <li><i class="fas fa-check-circle"></i> Ruhige Lounge & sonnige Terrasse</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="karte" class="menu-bg">
+    <div class="container">
+      <h2 class="section-title">Unsere Favoriten</h2>
+      <p class="section-subtitle">Ein kleiner Einblick in die Karte – mit Liebe kuratiert.</p>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <i class="fas fa-mug-hot"></i>
+          <h3>Lume Latte</h3>
+          <p>Espresso doppio, karamellisierte Haselnuss & hausgemachter Vanille-Schaum.</p>
+          <div class="price">€4,90</div>
+        </div>
+        <div class="menu-card">
+          <i class="fas fa-croissant"></i>
+          <h3>Cornetto al pistacchio</h3>
+          <p>Buttriges Hörnchen gefüllt mit sizilianischer Pistaziencreme.</p>
+          <div class="price">€3,80</div>
+        </div>
+        <div class="menu-card">
+          <i class="fas fa-wine-glass-alt"></i>
+          <h3>Aperitivo Lume</h3>
+          <p>Prosecco, Holunderblüte, Minze & Grapefruit – unser Signature-Drink.</p>
+          <div class="price">€8,50</div>
+        </div>
+      </div>
+      <div class="full-menu-link">
+        <a class="text-link" onclick="alert('Die vollständige Karte wird in Kürze online sein. Besuchen Sie uns vor Ort!')">Zur vollständigen Karte <i class="fas fa-arrow-right" style="margin-left: 6px;"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="galerie">
+    <div class="container">
+      <h2 class="section-title">Ambiente</h2>
+      <p class="section-subtitle">Natürliches Licht, warme Hölzer und eine Prise italienische Eleganz.</p>
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1974&auto=format&fit=crop" alt="Kaffee Detail">
+        <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=2071&auto=format&fit=crop" alt="Interior Café">
+        <img src="https://images.unsplash.com/photo-1600093463592-2e8b27c2f5f4?q=80&w=2070&auto=format&fit=crop" alt="Gebäck">
+        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=2070&auto=format&fit=crop" alt="Terrasse">
+      </div>
+    </div>
+  </section>
+
+  <section id="events">
+    <div class="container">
+      <div class="event-highlight">
+        <div class="event-text">
+          <p class="date">ERÖFFNUNGSWOCHEN · BIS 30. JUNI</p>
+          <h3>Willkommens-Aperitivo</h3>
+          <p>Jeden Abend ab 17 Uhr: Bestellen Sie einen Aperitivo und erhalten Sie eine kleine Antipasti-Platte dazu.</p>
+        </div>
+        <button class="btn-outline-light" onclick="alert('Reservierung für den Aperitivo: +49 7031 1234567')">Tisch sichern</button>
+      </div>
+    </div>
+  </section>
+
+  <footer id="kontakt">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <div class="footer-logo">Café Lume</div>
+          <p><i class="fas fa-map-marker-alt"></i> Marktplatz 8, 71063 Sindelfingen</p>
+          <p><i class="fas fa-clock"></i> Mo–Fr 7:30–22:00 | Sa 8:30–23:00 | So 9:00–20:00</p>
+          <p><i class="fas fa-phone-alt"></i> +49 7031 1234567</p>
+          <p><i class="fas fa-envelope"></i> ciao@cafelume.de</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Entdecken</h4>
+          <a onclick="alert('Frühstückskarte folgt in Kürze.')">Frühstück</a>
+          <a onclick="alert('Mittagstisch ab 12 Uhr.')">Mittagstisch</a>
+          <a onclick="alert('Feierabend-Drinks & kleine Karte.')">Feierabend</a>
+          <a onclick="alert('Für private Anfragen: ciao@cafelume.de')">Privatfeiern</a>
+        </div>
+        <div class="footer-links">
+          <h4>Info</h4>
+          <a href="#ueber-uns">Über uns</a>
+          <a onclick="alert('Aktuell keine offenen Stellen.')">Jobs</a>
+          <a onclick="alert('Presseanfragen an presse@cafelume.de')">Presse</a>
+          <a onclick="alert('Impressum: Café Lume, Marktplatz 8, 71063 Sindelfingen')">Impressum</a>
+        </div>
+      </div>
+      <div class="copyright">
+        © 2025 Café Lume – Neu eröffnet in Sindelfingen. Handgemacht mit <i class="fas fa-heart" style="color: #b49464;"></i> und italienischem Espresso.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
